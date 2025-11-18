@@ -23,9 +23,13 @@ const observer = new IntersectionObserver((entries) => {
 const heroTitle = document.querySelector('.hero-title');
 if (heroTitle && window.innerWidth > 768) {
     const text = heroTitle.textContent;
+    // Garante que o layout não pule ao remover o texto
+    const initialHeight = heroTitle.offsetHeight;
+    heroTitle.style.minHeight = `${initialHeight}px`;
     heroTitle.textContent = '';
     heroTitle.style.borderRight = '2px solid var(--cor-primary)';
-    
+    heroTitle.style.display = 'inline-block';
+
     let i = 0;
     const typeWriter = () => {
         if (i < text.length) {
